@@ -1,0 +1,63 @@
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.Networking.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Unity.SerializationLogic.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Unity.UNetWeaver.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Unity.CecilTools.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.xml
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEditor.xml
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.UI.xml
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\Temp\bin\Debug\UnityEngine.Networking.xml
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\obj\Debug\Assembly-CSharp.dll
+C:\Users\Miti Joshi\Documents\Chrastil-Warren Method 4\obj\Debug\Assembly-CSharp.pdb
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\obj\Debug\Assembly-CSharp.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Assembly-CSharp.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Assembly-CSharp.pdb
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEditor.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.Networking.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.UI.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Mono.Cecil.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Unity.SerializationLogic.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Unity.DataContract.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Unity.UNetWeaver.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Unity.CecilTools.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.xml
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEditor.xml
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.UI.xml
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\Temp\bin\Debug\UnityEngine.Networking.xml
+C:\Users\Miti Joshi\Documents\CW4 PracticePhase\obj\Debug\Assembly-CSharp.pdb
+G:\Resetting PracticePhase\Temp\bin\Debug\Assembly-CSharp.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Assembly-CSharp.pdb
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEditor.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.Networking.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.UI.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Mono.Cecil.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Unity.SerializationLogic.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Unity.DataContract.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Unity.UNetWeaver.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Unity.CecilTools.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Mono.Cecil.Pdb.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\Mono.Cecil.Mdb.dll
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.xml
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEditor.xml
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.UI.xml
+G:\Resetting PracticePhase\Temp\bin\Debug\UnityEngine.Networking.xml
+G:\Resetting PracticePhase\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+G:\Resetting PracticePhase\obj\Debug\Assembly-CSharp.dll
+G:\Resetting PracticePhase\obj\Debug\Assembly-CSharp.pdb

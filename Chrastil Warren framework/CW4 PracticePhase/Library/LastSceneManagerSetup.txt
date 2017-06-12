@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Practice Phase.unity
+  isLoaded: 1
+  isActive: 1
