@@ -25,7 +25,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		UnityEngine.Random.seed = 0;
+		UnityEngine.Random.InitState(0);
 
 		_wayPoints = new List<GameObject> (8);
 		_wayPoints.Add (GameObject.Find ("Phonebooth"));

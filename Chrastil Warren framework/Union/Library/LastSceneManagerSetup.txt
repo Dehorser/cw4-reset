@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CW4 Test Phase.unity
+- path: Assets/Scenes/Main.unity
   isLoaded: 1
   isActive: 1
