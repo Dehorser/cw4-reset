@@ -25,7 +25,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		UnityEngine.Random.InitState(0);
+		UnityEngine.Random.seed = 0;
 
 		_wayPoints = new List<GameObject> (8);
 		_wayPoints.Add (GameObject.Find ("Phonebooth"));
@@ -77,25 +77,25 @@ public class ReOrienterAndTester : MonoBehaviour {
 				lastButtonPress = Time.fixedTime;
 				state = POSTTRIAL;
 			}
-			if (Time.fixedTime > skipStart + 5 && Input.GetMouseButton (0) && Time.fixedTime > lastPress + .25f) {
+			if (Time.fixedTime > skipStart + 5 && Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
 				skipStart = Time.fixedTime;
 				skipCount = 1;
 				lastPress = Time.fixedTime;
-			} 
+			}
 			else if (Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
 				skipCount++;
 				lastPress = Time.fixedTime;
 				if (skipCount > 5)
 				{
-					transform.position = new Vector3(0,0,-1.658f);
+					transform.position = new Vector3(0, 0, -1.658f);
 				}
 				if (skipCount > 8)
 				{
 					//Turn maze off
-					_maze.SetActive (false);
+					_maze.SetActive(false);
 					//Turn voronoi on
-					_voronoi.SetActive (true);
-					_textMessage.SetActive (true);
+					_voronoi.SetActive(true);
+					_textMessage.SetActive(true);
 					lastButtonPress = Time.fixedTime;
 					state = POSTTRIAL;
 				}

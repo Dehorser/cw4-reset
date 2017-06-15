@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Resetting Test Phase.unity
+- path: Assets/Resetting Learning Phase.unity
   isLoaded: 1
   isActive: 1
