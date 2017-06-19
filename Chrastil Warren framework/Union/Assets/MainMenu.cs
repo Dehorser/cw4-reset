@@ -4,26 +4,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
-	private static string[] learningScenes = {"Resetting Practice Phase", 
-		"CW4 Practice Phase"
-	};
-
 	// Use this for initialization
 	void Start () {
-		Learning ();
-	}
+        StartCoroutine(SceneTimer("Resetting Learning Phase", 2, 5));
+        StartCoroutine(SceneTimer("CW4 Learning Phase", 9, 5));
+    }
 	
-	// Update is called once per frame
-	void Learning() {
-		foreach (string s in learningScenes) {
-			StartCoroutine(SceneTimer (s, 10f));
-		}
-	}
 
-	IEnumerator SceneTimer (string sceneName, float seconds)
+	IEnumerator SceneTimer (string sceneName, float startTime, float duration)
 	{
-		yield return new WaitForSeconds (seconds);
-		SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
+        yield return new WaitForSecondsRealtime(startTime);
+		SceneManager.LoadSceneAsync (sceneName, LoadSceneMode.Additive);
+        yield return new WaitForSecondsRealtime(duration);
+        SceneManager.UnloadScene(sceneName);
 	}
 }
 	
