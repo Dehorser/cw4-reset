@@ -65,7 +65,7 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	void StartExperiment() {
-		Destroy (curMenu);
+		Destroy (curMenu.gameObject);
 		StartCoroutine(SceneTimer("Resetting Learning Phase", 2, 5));
 		StartCoroutine(SceneTimer("CW4 Learning Phase", 9, 5));
 		StartCoroutine (SceneTimer (practice, 16, 5));
