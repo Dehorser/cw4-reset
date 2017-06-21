@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using VRStandardAssets.Utils;
 
 public class MainMenu : MonoBehaviour {
 
@@ -15,10 +16,11 @@ public class MainMenu : MonoBehaviour {
 	private string practice;
 	private string test;
 
+	private VRInput myVRInput;
+
 	// Use this for initialization
 	void Start () {
 		InitMenu ();
-        
     }
 
 	void InitMenu() {
@@ -30,38 +32,59 @@ public class MainMenu : MonoBehaviour {
 
 		CW4 = curMenu.transform.Find ("CW4").gameObject.GetComponent<Button>();
 
+		myVRInput = new VRInput();
+
 		ChoosePractice ();
+	}
+
+	void SetPractice(string sceneName) {
+		practice = sceneName;
+		ChooseTest();
+	}
+
+	void SetPracticeSwipe(VRInput.SwipeDirection swipe) {
+		if (swipe == VRInput.SwipeDirection.UP) {
+			SetPractice ("CW4 Practice Phase");
+		} else if (swipe == VRInput.SwipeDirection.DOWN) {
+			SetPractice ("Resetting Practice Phase");
+		}
 	}
 
 	void ChoosePractice() {
 		prompt.text = "Choose Practice";
 
-		resetting.onClick.AddListener(() => {
-			practice = "Resetting Practice Phase";
-			ChooseTest();
-		});
+		resetting.onClick.AddListener(()=>{ SetPractice ("Resetting Practice Phase"); });
 
-		CW4.onClick.AddListener (() => {
-			practice = "CW4 Practice Phase";
-			ChooseTest();
-		});
+		myVRInput.OnSwipe += SetPracticeSwipe;
+
+		CW4.onClick.AddListener (() => {SetPractice ("CW4 Practice Phase"); });
+	}
+
+	void SetTest(string sceneName) {
+		test = sceneName;
+		StartExperiment();
+	}
+
+	void SetTestSwipe(VRInput.SwipeDirection swipe) {
+		if (swipe == VRInput.SwipeDirection.UP) {
+			SetTest ("CW4 Test Phase");
+		} else if (swipe == VRInput.SwipeDirection.DOWN) {
+			SetTest ("Resetting Test Phase");
+		}
 	}
 
 	void ChooseTest() {
 		resetting.onClick.RemoveAllListeners ();
 		CW4.onClick.RemoveAllListeners ();
+		myVRInput.OnSwipe -= SetPracticeSwipe;
 
 		prompt.text = "Choose Test";
 
-		resetting.onClick.AddListener(() => {
-			test = "Resetting Test Phase";
-			StartExperiment();
-		});
+		resetting.onClick.AddListener(() => {SetTest("Resetting Test Phase");} );
 
-		CW4.onClick.AddListener (() => {
-			test = "CW4 Test Phase";
-			StartExperiment();
-		});
+		CW4.onClick.AddListener (() => {SetTest("CW4 Test Phase");} );
+
+		myVRInput.OnSwipe += SetTestSwipe;
 	}
 
 	void StartExperiment() {
