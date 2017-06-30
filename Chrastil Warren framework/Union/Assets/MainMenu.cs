@@ -6,95 +6,101 @@ using VRStandardAssets.Utils;
 
 public class MainMenu : MonoBehaviour {
 
-	public Canvas menuTemplate;
-	private Canvas curMenu;
+    public Canvas menuTemplate;
+    private Canvas curMenu;
 
-	private Text prompt;
-	private Button resetting;
-	private Button CW4;
+    private Button up;
+    private Button down;
+    private Button left;
+    private Button right;
 
-	private string practice;
-	private string test;
+    private string practice;
+    private string test;
 
-	private VRInput myVRInput;
+    [SerializeField] private VRInput myVRInput;
+
+    Button getButton(string name) {
+        return curMenu.transform.Find(name).gameObject.GetComponent<Button>();
+    }
 
 	// Use this for initialization
 	void Start () {
-		InitMenu ();
-    }
-
-	void InitMenu() {
 		curMenu = Instantiate (menuTemplate);
 
-		prompt = curMenu.transform.Find ("Prompt").gameObject.GetComponent<Text>();
+        up = getButton("Up");
+        down = getButton("Down");
+        left = getButton("Left");
+        right = getButton("Right");
 
-		resetting = curMenu.transform.Find ("Resetting").gameObject.GetComponent<Button>();
+        practice = "Practice Phase";
+        test = "Test Phase";
 
-		CW4 = curMenu.transform.Find ("CW4").gameObject.GetComponent<Button>();
+        myVRInput = curMenu.gameObject.AddComponent<VRInput>();
 
-		myVRInput = new VRInput();
-
-		ChoosePractice ();
+        Selection();
 	}
 
-	void SetPractice(string sceneName) {
-		practice = sceneName;
-		ChooseTest();
+    // Sets either practice or test as CW4
+    string setCW4(string str)
+    {
+        return "CW4 " + str;
+    }
+
+    string setResetting(string str) {
+        return "Resetting " + str;
+    }
+
+    // Interprets swipes into actions
+	void ChooseMode(VRInput.SwipeDirection swipe) {
+        bool invalidSelection = false;
+
+        switch(swipe)
+        {
+            case VRInput.SwipeDirection.UP:
+                practice = setCW4(practice);
+                test = setCW4(test);
+                break;
+            case VRInput.SwipeDirection.DOWN:
+                practice = setResetting(practice);
+                test = setResetting(test);
+                break;
+            case VRInput.SwipeDirection.LEFT:
+                practice = setCW4(practice);
+                test = setResetting(test);
+                break;
+            case VRInput.SwipeDirection.RIGHT:
+                practice = setResetting(practice);
+                test = setCW4(test);
+                break;
+            default:
+                invalidSelection = true;
+                break;
+        }
+
+        if (!invalidSelection) {
+            Experiment();
+        }
 	}
 
-	void SetPracticeSwipe(VRInput.SwipeDirection swipe) {
-		if (swipe == VRInput.SwipeDirection.UP) {
-			SetPractice ("CW4 Practice Phase");
-		} else if (swipe == VRInput.SwipeDirection.DOWN) {
-			SetPractice ("Resetting Practice Phase");
-		}
-	}
+    // Selection screen
+    void Selection()
+    {
+        myVRInput.OnSwipe += ChooseMode;
+    }
 
-	void ChoosePractice() {
-		prompt.text = "Choose Practice";
-
-		resetting.onClick.AddListener(()=>{ SetPractice ("Resetting Practice Phase"); });
-
-		myVRInput.OnSwipe += SetPracticeSwipe;
-
-		CW4.onClick.AddListener (() => {SetPractice ("CW4 Practice Phase"); });
-	}
-
-	void SetTest(string sceneName) {
-		test = sceneName;
-		StartExperiment();
-	}
-
-	void SetTestSwipe(VRInput.SwipeDirection swipe) {
-		if (swipe == VRInput.SwipeDirection.UP) {
-			SetTest ("CW4 Test Phase");
-		} else if (swipe == VRInput.SwipeDirection.DOWN) {
-			SetTest ("Resetting Test Phase");
-		}
-	}
-
-	void ChooseTest() {
-		resetting.onClick.RemoveAllListeners ();
-		CW4.onClick.RemoveAllListeners ();
-		myVRInput.OnSwipe -= SetPracticeSwipe;
-
-		prompt.text = "Choose Test";
-
-		resetting.onClick.AddListener(() => {SetTest("Resetting Test Phase");} );
-
-		CW4.onClick.AddListener (() => {SetTest("CW4 Test Phase");} );
-
-		myVRInput.OnSwipe += SetTestSwipe;
-	}
-
-	void StartExperiment() {
+    // Experiment itself
+    void Experiment() {
+        // Destroy useless elements just in case
 		Destroy (curMenu.gameObject);
-		StartCoroutine(SceneTimer("Resetting Learning Phase", 2, 5));
-		StartCoroutine(SceneTimer("CW4 Learning Phase", 9, 5));
-		StartCoroutine (SceneTimer (practice, 16, 5));
-		StartCoroutine (SceneTimer (test, 23, 5));
+        Destroy(myVRInput);
+
+		StartCoroutine(SceneTimer("Resetting Learning Phase", 1, 6));
+		StartCoroutine(SceneTimer("CW4 Learning Phase", 8, 6));
+		StartCoroutine (SceneTimer (practice, 15, 6));
+		StartCoroutine (SceneTimer (test, 22, 6));
 	}
 
+    // Handles timing of scenes
 	IEnumerator SceneTimer (string sceneName, float startTime, float duration)
 	{
         yield return new WaitForSecondsRealtime(startTime);
