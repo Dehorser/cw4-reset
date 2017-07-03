@@ -94,10 +94,10 @@ public class MainMenu : MonoBehaviour {
 		Destroy (curMenu.gameObject);
         Destroy(myVRInput);
 
-		StartCoroutine(SceneTimer("Resetting Learning Phase", 1, 6));
-		StartCoroutine(SceneTimer("CW4 Learning Phase", 8, 6));
-		StartCoroutine (SceneTimer (practice, 15, 6));
-		StartCoroutine (SceneTimer (test, 22, 6));
+		StartCoroutine(SceneTimer("Resetting Learning Phase", 10, 60));
+		StartCoroutine(SceneTimer("CW4 Learning Phase", 80, 60));
+		StartCoroutine (SceneTimer (practice, 150, 60));
+		StartCoroutine (SceneTimer (test, 220, 60));
 	}
 
     // Handles timing of scenes
