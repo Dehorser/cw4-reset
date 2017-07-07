@@ -44,7 +44,7 @@ public class MyNetworkServer : MonoBehaviour {
 	void Update () 
 	{
 		_updateCount++;
-		//resettingFSM ();
+		resettingFSM ();
 	}
 
 	void FixedUpdate() //was previously FixedUpdate()
@@ -71,72 +71,72 @@ public class MyNetworkServer : MonoBehaviour {
 
 		File.AppendAllText(path, appendText);
 
-        move();
+		move();
 	}
 
 	void OnGUI()
 	{
-        //messageText.text = message;
-    }
+		//messageText.text = message;
+	}
 
 
-    private float yaw;
-    private float rad;
-    private float xVal;
-    private float zVal;
+	private float yaw;
+	private float rad;
+	private float xVal;
+	private float zVal;
 
-    public static float velocity = 0f;
-    public static float method1StartTimeGrow = 0f;
-    public static float method1StartTimeDecay = 0f;
-    public static bool wasOne = false; //phase one when above (+/-) 0.105 threshold
-    public static bool wasTwo = true; //phase two when b/w -0.105 and 0.105 thresholds
+	public static float velocity = 0f;
+	public static float method1StartTimeGrow = 0f;
+	public static float method1StartTimeDecay = 0f;
+	public static bool wasOne = false; //phase one when above (+/-) 0.105 threshold
+	public static bool wasTwo = true; //phase two when b/w -0.105 and 0.105 thresholds
 
 
-    void move()
-    {
-        yaw = InputTracking.GetLocalRotation(VRNode.Head).eulerAngles.y;
-        rad = yaw * Mathf.Deg2Rad;
-        zVal = 0.55f * Mathf.Cos(rad);
-        xVal = 0.55f * Mathf.Sin(rad);
+	void move()
+	{
+		yaw = InputTracking.GetLocalRotation(VRNode.Head).eulerAngles.y;
+		rad = yaw * Mathf.Deg2Rad;
+		zVal = 0.55f * Mathf.Cos(rad);
+		xVal = 0.55f * Mathf.Sin(rad);
 
-        if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
-            (Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f))
-        {
-            if (wasTwo)
-            { //we are transitioning from phase 2 to 1
-                method1StartTimeGrow = Time.time;
-                wasTwo = false;
-                wasOne = true;
-            }
-        }
-        else
-        {
-            if (wasOne)
-            {
-                method1StartTimeDecay = Time.time;
-                wasOne = false;
-                wasTwo = true;
-            }
-        }
+		if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
+			(Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f))
+		{
+			if (wasTwo)
+			{ //we are transitioning from phase 2 to 1
+				method1StartTimeGrow = Time.time;
+				wasTwo = false;
+				wasOne = true;
+			}
+		}
+		else
+		{
+			if (wasOne)
+			{
+				method1StartTimeDecay = Time.time;
+				wasOne = false;
+				wasTwo = true;
+			}
+		}
 
-        if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
-            (Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f))
-        { //0.08 is an arbitrary threshold
+		if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
+			(Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f))
+		{ //0.08 is an arbitrary threshold
 
-            velocity = 3f - (3f - velocity) * Mathf.Exp((method1StartTimeGrow - Time.time) / 1.6f); //grow
-        }
-        else
-        {
+			velocity = 3f - (3f - velocity) * Mathf.Exp((method1StartTimeGrow - Time.time) / 1.6f); //grow
+		}
+		else
+		{
 
-            velocity = 0f - (0f - velocity) * Mathf.Exp((method1StartTimeDecay - Time.time) / 1.6f); //decay
-        }
+			velocity = 0f - (0f - velocity) * Mathf.Exp((method1StartTimeDecay - Time.time) / 1.6f); //decay
+		}
 
-        transform.Translate(xVal * velocity * Time.fixedDeltaTime, 0, zVal * velocity * Time.fixedDeltaTime);
+		transform.Translate(xVal * velocity * Time.fixedDeltaTime, 0, zVal * velocity * Time.fixedDeltaTime);
 
-    }
+	}
 
-    // Create a client and connect to the server port
-    public void SetupClient()
+	// Create a client and connect to the server port
+	public void SetupClient()
 	{
 		myClient = new NetworkClient();
 		myClient.RegisterHandler (MESSAGE_DATA, DataReceptionHandler);
@@ -163,10 +163,11 @@ public class MyNetworkServer : MonoBehaviour {
 		VRPNMessage vrpnData = _vrpnData.ReadMessage<VRPNMessage>();
 		_pos = vrpnData._pos;
 		_quat = vrpnData._quat;
+		Debug.Log (_pos);
 		//transform.eulerAngles = vrpnData._quat.eulerAngles;
 		//message = transform.position.ToString();
 	}
-		
+
 
 	private Vector3 intendedCenter = new Vector3 (-.6f, 0, -.3f);
 	private float prevXAngle = 0f;
@@ -265,6 +266,10 @@ public class MyNetworkServer : MonoBehaviour {
 		else {
 			message = "Please go to the destination";
 			transform.Translate(deltaTranslationByFrame);
+			Vector3 tmp = transform.position;
+			tmp.y = _pos.y;
+			transform.position = tmp;
+			//transform.position.y = _pos.y;
 		}
 		//update position incrementally using sin and cos
 		float delX = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z;

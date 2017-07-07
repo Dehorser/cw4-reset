@@ -44,7 +44,7 @@ public class MyNetworkServer : MonoBehaviour {
 	void Update () 
 	{
 		_updateCount++;
-		//resettingFSM ();
+		resettingFSM ();
 	}
 
 	void FixedUpdate() //was previously FixedUpdate()
@@ -163,6 +163,7 @@ public class MyNetworkServer : MonoBehaviour {
 		VRPNMessage vrpnData = _vrpnData.ReadMessage<VRPNMessage>();
 		_pos = vrpnData._pos;
 		_quat = vrpnData._quat;
+		Debug.Log (_pos);
 		//transform.eulerAngles = vrpnData._quat.eulerAngles;
 		//message = transform.position.ToString();
 	}
@@ -265,6 +266,10 @@ public class MyNetworkServer : MonoBehaviour {
 		else {
 			message = "Please go to the destination";
 			transform.Translate(deltaTranslationByFrame);
+			Vector3 tmp = transform.position;
+			tmp.y = _pos.y;
+			transform.position = tmp;
+			//transform.position.y = _pos.y;
 		}
 		//update position incrementally using sin and cos
 		float delX = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z;
