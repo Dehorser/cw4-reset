@@ -1,4 +1,16 @@
 sceneSetups:
-- path: Assets/Scenes/Resetting Practice Phase.unity
+- path: Assets/Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/Resetting Learning Phase.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/CW4 Learning Phase.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/CW4 Practice Phase.unity
+  isLoaded: 0
+  isActive: 0
+- path: Assets/Scenes/CW4 Test Phase.unity
+  isLoaded: 0
+  isActive: 0
