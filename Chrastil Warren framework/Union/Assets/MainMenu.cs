@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour {
     private Button left;
     private Button right;
 
-    private string practice;
+    private string learning;
     private string test;
 
     [SerializeField] private VRInput myVRInput;
@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour {
         left = getButton("Left");
         right = getButton("Right");
 
-        practice = "Practice Phase";
+		learning = "Learning Phase";
         test = "Test Phase";
 
         myVRInput = curMenu.gameObject.AddComponent<VRInput>();
@@ -57,19 +57,19 @@ public class MainMenu : MonoBehaviour {
         switch(swipe)
         {
             case VRInput.SwipeDirection.UP:
-                practice = setCW4(practice);
+                learning = setCW4(learning);
                 test = setCW4(test);
                 break;
             case VRInput.SwipeDirection.DOWN:
-                practice = setResetting(practice);
+                learning = setResetting(learning);
                 test = setResetting(test);
                 break;
             case VRInput.SwipeDirection.LEFT:
-                practice = setCW4(practice);
+                learning = setCW4(learning);
                 test = setResetting(test);
                 break;
             case VRInput.SwipeDirection.RIGHT:
-                practice = setResetting(practice);
+                learning = setResetting(learning);
                 test = setCW4(test);
                 break;
             default:
@@ -94,10 +94,10 @@ public class MainMenu : MonoBehaviour {
 		Destroy (curMenu.gameObject);
         Destroy(myVRInput);
 
-		StartCoroutine(SceneTimer("Resetting Learning Phase", 10, 60));
-		StartCoroutine(SceneTimer("CW4 Learning Phase", 80, 60));
-		StartCoroutine (SceneTimer (practice, 150, 60));
-		StartCoroutine (SceneTimer (test, 220, 60));
+		StartCoroutine(SceneTimer("Resetting Practice Phase", 3, 300));
+		StartCoroutine(SceneTimer("CW4 Practice Phase", 306, 300));
+		StartCoroutine (SceneTimer (learning, 609, 600));
+		StartCoroutine (SceneTimer (test, 1212, 3600));
 	}
 
     // Handles timing of scenes
