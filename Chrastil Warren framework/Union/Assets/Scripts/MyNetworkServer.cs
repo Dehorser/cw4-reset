@@ -10,7 +10,7 @@ public class MyNetworkServer : MonoBehaviour {
 	const short MESSAGE_DATA = 880;
 	const short MESSAGE_INFO = 881;
 	const string SERVER_ADDRESS = "192.168.11.11";
-	const string TRACKER_ADDRESS = "127.0.0.1";
+	const string TRACKER_ADDRESS = "192.168.1.100";
 	const int SERVER_PORT = 5000;
 
 	public string message = "";
@@ -39,6 +39,7 @@ public class MyNetworkServer : MonoBehaviour {
 		SetupClient ();
 		message = "Discovered Android";
 	}
+
 
 	void Update () 
 	{
@@ -74,7 +75,18 @@ public class MyNetworkServer : MonoBehaviour {
 	void OnGUI()
 	{
         //messageText.text = message;
-	}
+    }
+
+    private float yaw;
+    private float rad;
+    private float xVal;
+    private float zVal;
+
+    public static float velocity = 0f;
+    public static float method1StartTimeGrow = 0f;
+    public static float method1StartTimeDecay = 0f;
+    public static bool wasOne = false; //phase one when above (+/-) 0.105 threshold
+    public static bool wasTwo = true; //phase two when b/w -0.105 and 0.105 thresholds
 
     // Create a client and connect to the server port
     public void SetupClient()
@@ -207,10 +219,14 @@ public class MyNetworkServer : MonoBehaviour {
 		else {
 			message = "Please go to the destination";
 			transform.Translate(deltaTranslationByFrame);
+			Vector3 tmp = transform.position;
+			tmp.y = _pos.y;
+			transform.position = tmp;
+			//transform.position.y = _pos.y;
 		}
 		//update position incrementally using sin and cos
-		float delX = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z;
-		float delZ = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x;
+		//float delX = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z;
+		//float delZ = Mathf.Cos(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.z + Mathf.Sin(cumulativeAngleTurned * Mathf.Deg2Rad) * deltaTranslationByFrame.x;
 		//transform.Translate(deltaTranslationByFrame);
 		//store data for use next frame
 		prevPos = _pos;

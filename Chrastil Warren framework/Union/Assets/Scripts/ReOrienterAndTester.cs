@@ -25,7 +25,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		UnityEngine.Random.InitState (0);
+		UnityEngine.Random.InitState(0);
 
 		_wayPoints = new List<GameObject> (8);
 		_wayPoints.Add (GameObject.Find ("Phonebooth"));
@@ -55,52 +55,53 @@ public class ReOrienterAndTester : MonoBehaviour {
 		_textMessage.SetActive (false);
 	}
 
-	public const int TRAINING = 0;
+	//public const int TRAINING = 0;
 	public const int PRETRIAL = 1;
 	public const int INTRIAL = 2;
 	public const int POSTTRIAL = 3;
-	private int state = TRAINING;
+	private int state = PRETRIAL;
 	private float lastButtonPress = 0;
-	private int skipCount = 0;
-	private float skipStart = 0;
-	private float lastPress = 0;
+//	private int skipCount = 0;
+//	private float skipStart = 0;
+//	private float lastPress = 0;
 
 	// Update is called once per frame
 	void Update () {
-		if (state == TRAINING) {
-			if (Time.fixedTime > 600) {
-				//Turn maze off
-				_maze.SetActive (false);
-				//Turn voronoi on
-				_voronoi.SetActive (true);
-				_textMessage.SetActive (true);
-				lastButtonPress = Time.fixedTime;
-				state = POSTTRIAL;
-			}
-			if (Time.fixedTime > skipStart + 5 && Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
-				skipStart = Time.fixedTime;
-				skipCount = 1;
-				lastPress = Time.fixedTime;
-			}
-			else if (Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
-				skipCount++;
-				lastPress = Time.fixedTime;
-				if (skipCount > 5)
-				{
-					transform.position = new Vector3(0, 0, -1.658f);
-				}
-				if (skipCount > 8)
-				{
-					//Turn maze off
-					_maze.SetActive(false);
-					//Turn voronoi on
-					_voronoi.SetActive(true);
-					_textMessage.SetActive(true);
-					lastButtonPress = Time.fixedTime;
-					state = POSTTRIAL;
-				}
-			}
-		} else if (state == PRETRIAL) {
+//		if (state == TRAINING) {
+//			if (Time.fixedTime > 600) {
+//				//Turn maze off
+//				_maze.SetActive (false);
+//				//Turn voronoi on
+//				_voronoi.SetActive (true);
+//				_textMessage.SetActive (true);
+//				lastButtonPress = Time.fixedTime;
+//				state = POSTTRIAL;
+//			}
+//			if (Time.fixedTime > skipStart + 5 && Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
+//				skipStart = Time.fixedTime;
+//				skipCount = 1;
+//				lastPress = Time.fixedTime;
+//			}
+//			else if (Input.GetMouseButton(0) && Time.fixedTime > lastPress + .25f) {
+//				skipCount++;
+//				lastPress = Time.fixedTime;
+//				if (skipCount > 5)
+//				{
+//					transform.position = new Vector3(0, 0, -1.658f);
+//				}
+//				if (skipCount > 8)
+//				{
+//					//Turn maze off
+//					_maze.SetActive(false);
+//					//Turn voronoi on
+//					_voronoi.SetActive(true);
+//					_textMessage.SetActive(true);
+//					lastButtonPress = Time.fixedTime;
+//					state = POSTTRIAL;
+//				}
+//			}
+//		} else 
+		if (state == PRETRIAL) {
 			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
 				if (Mathf.Abs (_humanMover.transform.position.x - _wayPoints [_index].transform.position.x) < 1.2) {
 					if (Mathf.Abs (_humanMover.transform.position.z - _wayPoints [_index].transform.position.z) < 1.2) {
