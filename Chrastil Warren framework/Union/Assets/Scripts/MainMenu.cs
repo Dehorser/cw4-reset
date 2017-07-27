@@ -36,7 +36,7 @@ public class MainMenu : MonoBehaviour {
 		practice1 = practice2 = "Practice Phase";
 
 		learning = "Learning Phase";
-        test = "Test Phase";
+        test = "Learning Phase";
 
         myVRInput = curMenu.gameObject.AddComponent<VRInput>();
 
