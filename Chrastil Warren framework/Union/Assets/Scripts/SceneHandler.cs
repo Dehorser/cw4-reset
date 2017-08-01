@@ -20,7 +20,8 @@ public class SceneHandler : MonoBehaviour {
 			Phase temp = myScenes.Dequeue ();
 
 			// Do not end last scene early
-			if (myScenes.Count == 0) {
+			if (myScenes.Count < 1) {
+				Debug.Log ("final scene");
 				SceneManager.LoadSceneAsync (temp.Name, 
 					LoadSceneMode.Additive);
 			} else {

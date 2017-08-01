@@ -74,11 +74,12 @@ public class MyNetworkServer : MonoBehaviour {
 
 	void OnGUI()
 	{
-        //messageText.text = message;
+        messageText.text = message;
     }
 
     private float yaw;
     private float rad;
+
     private float xVal;
     private float zVal;
 
@@ -116,13 +117,13 @@ public class MyNetworkServer : MonoBehaviour {
 		VRPNMessage vrpnData = _vrpnData.ReadMessage<VRPNMessage>();
 		_pos = vrpnData._pos;
 		_quat = vrpnData._quat;
-		Debug.Log (_pos);
+		//Debug.Log (_pos);
 		//transform.eulerAngles = vrpnData._quat.eulerAngles;
 		//message = transform.position.ToString();
 	}
 		
 
-	private Vector3 intendedCenter = new Vector3 (-.6f, 0, -.3f);
+	private Vector3 intendedCenter = new Vector3 (-0.25f, 0, 0.15f);
 	private float prevXAngle = 0f;
 	private Vector3 prevPos = new Vector3();
 	private bool resetNeeded = false;
@@ -200,7 +201,10 @@ public class MyNetworkServer : MonoBehaviour {
 			tmp.y += injectedRotation;
 			transform.eulerAngles = tmp;
 			//if a full turn has occured then stop resetting
-			if (Mathf.Abs (virtualAngleTurned) > 359.9f || ReturnedToBounds()) {
+			if (Mathf.Abs (virtualAngleTurned) > 359.9f) {
+				resetNeeded = false;
+			}
+			if (ReturnedToBounds ()) {
 				resetNeeded = false;
 				HUD.SetActive (false);
 			}
@@ -209,6 +213,7 @@ public class MyNetworkServer : MonoBehaviour {
 		//Subject needs to walk forward two steps to prevent further triggers
 		else if (hasNotReturnedToBounds) {
 			if (ReturnedToBounds ()) {
+				HUD.SetActive (false);
 				hasNotReturnedToBounds = false;
 			}
 			message = "Please walk forward";
@@ -231,29 +236,29 @@ public class MyNetworkServer : MonoBehaviour {
 		//store data for use next frame
 		prevPos = _pos;
 		prevXAngle = Camera.main.transform.localEulerAngles.y;
-		message = feather.transform.position.ToString();
+		//message = feather.transform.position.ToString();
 	}
 
 	public bool OutOfBounds() {
-		if (_pos.x > 1.4f)
+		if (_pos.z > 2f)
 			return true;
-		if (_pos.x < -2.6f)
+		if (_pos.z < -1.7f)
 			return true;
-		if (_pos.z > 1.2f)
+		if (_pos.x > 1.2f)
 			return true;
-		if (_pos.z < -1.8f)
+		if (_pos.x < -1.8f)
 			return true;
 		return false;
 	}
 
 	public bool ReturnedToBounds() {
-		if (_pos.x > 1.1f)
+		if (_pos.z > 1.7f)
 			return false;
-		if (_pos.x < -2.3f)
+		if (_pos.z < -1.4f)
 			return false;
-		if (_pos.z > .9f)
+		if (_pos.x > .9f)
 			return false;
-		if (_pos.z < -1.5f)
+		if (_pos.x < -1.5f)
 			return false;
 		return true;
 	}
