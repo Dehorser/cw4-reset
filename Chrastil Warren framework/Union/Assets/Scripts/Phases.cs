@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 // Stores each phase (scene) of test
-public class Phase : MonoBehaviour {
+public class Phase {
 
 	private string name;
 	private int time;
@@ -35,7 +35,7 @@ public class Phase : MonoBehaviour {
 }
 	
 // Handles moving between scenes
-public class Phases : MonoBehaviour {
+public class Phases {
 
 	enum PhaseNames {Practice1, Practice2, Learning, Test};
 	public enum PhaseTypes {CW4, Resetting};
@@ -48,10 +48,10 @@ public class Phases : MonoBehaviour {
 		myPhases = new Phase[Enum.GetNames(typeof(PhaseNames)).Length];
 
 		// Hardcode times
-		myPhases [(int) PhaseNames.Practice1].Time = 300;
-		myPhases [(int) PhaseNames.Practice2].Time = 300;
-		myPhases [(int) PhaseNames.Learning].Time = 600;
-		myPhases [(int) PhaseNames.Test].Time = int.MaxValue;
+		myPhases [(int) PhaseNames.Practice1] = new Phase("", 300);
+		myPhases [(int) PhaseNames.Practice2] = new Phase("", 300);
+		myPhases [(int) PhaseNames.Learning] = new Phase("", 600);
+		myPhases [(int) PhaseNames.Test] = new Phase("", int.MaxValue);
 	}
 
 	// Set learning

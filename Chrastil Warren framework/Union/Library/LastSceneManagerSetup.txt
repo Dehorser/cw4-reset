@@ -1,4 +1,4 @@
 sceneSetups:
-- path: D:/Lab Computer/Desktop/Haley/PrismAdaptation/PrismAdaptation2017/Assets/StartMenu.unity
+- path: Assets/Scenes/MainMenu.unity
   isLoaded: 1
   isActive: 1

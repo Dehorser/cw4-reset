@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour {
 //        left = getButton("Left");
 //        right = getButton("Right");
 
-		myPhases = this.gameObject.GetComponent<Phases> ();
+		myPhases = new Phases();
 
         myVRInput = curMenu.gameObject.AddComponent<VRInput>();
 
