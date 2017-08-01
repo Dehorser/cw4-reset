@@ -30,8 +30,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 		_voronoi.SetActive (true);
 		_textMessage.SetActive (false);
 
-		myTrials = this.gameObject.GetComponent<TrialManager>();
-		myTrials.SetUpTrials ();
+		myTrials = new TrialManager ();
 
 
 		//setup portion
@@ -123,7 +122,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 	}
 
 	void LogData(string action) {
-		string path = Application.persistentDataPath + "/CW4Summary_Data_Test_Phase.txt";
+		string path = Application.persistentDataPath + "/Summary_Data_Test_Phase.txt";
 
 		string appendText = "\n" + DateTime.Now.ToString() + "\t" + 
 			Time.time + "\t" + 

@@ -21,7 +21,7 @@ public class Trial {
 }
 	
 
-public class TrialManager : MonoBehaviour {
+public class TrialManager {
 
 	// The 8 types of trials
 	private Trial[] trialTypes;
@@ -35,12 +35,7 @@ public class TrialManager : MonoBehaviour {
 	private int orderIndex;
 	private int maxOrderIndex;
 
-	void Start() {
-		
-	}
-
-	public void SetUpTrials() //created because of race condition?? between starts for this and ROT
-	{
+	public TrialManager() {
 
 		trialTypes = new Trial[] {
 			new Trial (GameObject.Find ("Guitar"), new Vector3 (3.918f, 0f, -.673f), GameObject.Find ("Snowman")),
@@ -55,7 +50,7 @@ public class TrialManager : MonoBehaviour {
 
 		};
 
-		orderIndex = -1;
+		orderIndex = 0;
 		maxOrderIndex = trialOrder.Length - 1;
 	}
 		

@@ -1,79 +1,102 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VRStandardAssets.Utils;
 
 public class MainMenu : MonoBehaviour {
 
+	[SerializeField] private VRInput myVRInput;
+
     public Canvas menuTemplate;
+
     private Canvas curMenu;
 	private GameObject canvasCamera;
-
-//    private Button up;
-//    private Button down;
-//    private Button left;
-//    private Button right;
-
-    [SerializeField] private VRInput myVRInput;
-
+	private Button[] buttons;
+	private Text prompt;
 	private Phases myPhases;
+
+	private SceneHandler mySceneHandler;
+
+	void Awake() {
+		myVRInput = this.gameObject.AddComponent<VRInput>();
+	}
 
 	// Use this for initialization
 	void Start () {
-		curMenu = Instantiate (menuTemplate);
-		canvasCamera = GameObject.Find ("Camera");
-
-//        up = getButton("Up");
-//        down = getButton("Down");
-//        left = getButton("Left");
-//        right = getButton("Right");
-
-		myPhases = new Phases();
-
-        myVRInput = curMenu.gameObject.AddComponent<VRInput>();
-
         Selection();
 	}
 
-	Button getButton(string name) {
-		return curMenu.transform.Find(name).gameObject.GetComponent<Button>();
+	// Selection screen
+	void Selection()
+	{
+		curMenu = Instantiate (menuTemplate);
+		canvasCamera = GameObject.Find ("Camera");
+		buttons = curMenu.GetComponentsInChildren<Button> ();
+		prompt = GameObject.Find ("Prompt").GetComponent<Text>();
+		myPhases = new Phases();
+
+		myVRInput.OnSwipe += ChooseMode;
 	}
 
     // Interprets swipes into actions
 	void ChooseMode(VRInput.SwipeDirection swipe) {
         bool invalidSelection = true;
+		string mode = "";
 
         switch(swipe)
         {
-            case VRInput.SwipeDirection.UP:
-				invalidSelection = false;
-				break;
-            case VRInput.SwipeDirection.DOWN:
-				invalidSelection = false;
-                break;
-            case VRInput.SwipeDirection.LEFT:
-				invalidSelection = false;
-                break;
-            case VRInput.SwipeDirection.RIGHT:
-				invalidSelection = false;
-                break;
-            default:
-                break;
+		case VRInput.SwipeDirection.UP:
+			invalidSelection = false;
+			mode = "Selected up";
+			myPhases.SetLearning (Phases.PhaseTypes.CW4);
+			myPhases.SetTesting (Phases.PhaseTypes.CW4);
+			break;
+		case VRInput.SwipeDirection.DOWN:
+			invalidSelection = false;
+			mode =  "Selected down";
+			myPhases.SetLearning (Phases.PhaseTypes.Resetting);
+			myPhases.SetTesting (Phases.PhaseTypes.Resetting);
+			break;
+		case VRInput.SwipeDirection.LEFT:
+			invalidSelection = false;
+			mode = "Selected left";
+			myPhases.SetLearning (Phases.PhaseTypes.CW4);
+			myPhases.SetTesting (Phases.PhaseTypes.Resetting);
+			break;
+		case VRInput.SwipeDirection.RIGHT:
+			invalidSelection = false;
+			mode =  "Selected right";
+			myPhases.SetLearning (Phases.PhaseTypes.Resetting);
+			myPhases.SetTesting (Phases.PhaseTypes.CW4);
+			break;
+		default:
+			break;
         }
 
 		if (!invalidSelection) {
 			myVRInput.OnSwipe -= ChooseMode;
-			//Experiment();
+			StartCoroutine(DisplayMode (mode));
         }
 	}
 
-    // Selection screen
-    void Selection()
-    {
-        myVRInput.OnSwipe += ChooseMode;
-		//myVRInput.OnDoubleClick += SkipCurrentTask;
-    }
+	IEnumerator DisplayMode(string s) {
+		prompt.text = s;
+		foreach( var b in buttons) {
+			Destroy(b.gameObject);
+		}
+		yield return new WaitForSecondsRealtime (5);
+		Experiment();
+	}
+
+	void Experiment() {
+		//Destroy useless elements just in case
+		Destroy (curMenu.gameObject);
+
+		mySceneHandler = this.gameObject.AddComponent<SceneHandler> ();
+
+		mySceneHandler.PlayScenes (myPhases.getPhases());
+	}
+
 
 //	#region Experimental Procedure
 //

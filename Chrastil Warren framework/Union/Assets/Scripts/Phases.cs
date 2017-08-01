@@ -54,9 +54,13 @@ public class Phases {
 		myPhases [(int) PhaseNames.Test] = new Phase("", int.MaxValue);
 	}
 
+	public Phase[] getPhases() {
+		return this.myPhases;
+	}
+
 	// Set learning
 	// First practice is same type as learning
-	void SetLearning(PhaseTypes t) {
+	public void SetLearning(PhaseTypes t) {
 		if (t == PhaseTypes.CW4) {
 			myPhases [(int) PhaseNames.Practice1].Name = "CW4 Practice Phase";
 			myPhases [(int) PhaseNames.Learning].Name = "CW4 Learning Phase";
@@ -68,7 +72,7 @@ public class Phases {
 
 	// Set testing
 	// Second practice is same type as testing
-	void SetTesting(PhaseTypes t) {
+	public void SetTesting(PhaseTypes t) {
 		if (t == PhaseTypes.CW4) {
 			myPhases [(int) PhaseNames.Practice2].Name = "CW4 Practice Phase";
 			myPhases [(int) PhaseNames.Test].Name = "CW4 Test Phase";
