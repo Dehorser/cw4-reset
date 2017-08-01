@@ -115,7 +115,7 @@ public class VRPNServer : MonoBehaviour {
 	{
 		VRPNInfo vrpnData = vrpnMsg.ReadMessage<VRPNInfo> ();
 		VRPNConnection vrpnC = _connectionList [vrpnMsg.conn.connectionId];
-		vrpnC._VRPNObject = vrpnData._VRPNObject + "@" + vrpnData._IPAdress;
+		vrpnC._VRPNObject = vrpnData._VRPNObject + "123" + vrpnData._IPAdress;
 	}
 
 	public void OnConnected(NetworkMessage netMsg)

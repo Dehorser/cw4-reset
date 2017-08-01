@@ -54,7 +54,8 @@ public class AccelerometerInput4 : MonoBehaviour {
         //Do the movement algorithm, more details inside
 		move ();
         //Send the current transform data to the server (should probably be wrapped in an if isAndroid but I haven't tested)
-        myClient.Send(MESSAGE_DATA, new TDMessage(this.transform.localPosition, Camera.main.transform.eulerAngles));
+		if (myClient != null)
+        	myClient.Send(MESSAGE_DATA, new TDMessage(this.transform.localPosition, Camera.main.transform.eulerAngles));
 	}
 
 	void move ()

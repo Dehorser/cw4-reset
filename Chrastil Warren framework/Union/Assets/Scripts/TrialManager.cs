@@ -32,10 +32,15 @@ public class TrialManager : MonoBehaviour {
 	};
 
 	// Index of current path
-	private Int32 orderIndex;
-	private Int32 maxOrderIndex;
+	private int orderIndex;
+	private int maxOrderIndex;
 
 	void Start() {
+		
+	}
+
+	public void SetUpTrials() //created because of race condition?? between starts for this and ROT
+	{
 
 		trialTypes = new Trial[] {
 			new Trial (GameObject.Find ("Guitar"), new Vector3 (3.918f, 0f, -.673f), GameObject.Find ("Snowman")),
@@ -50,9 +55,10 @@ public class TrialManager : MonoBehaviour {
 
 		};
 
-		orderIndex = 0;
+		orderIndex = -1;
 		maxOrderIndex = trialOrder.Length - 1;
 	}
+		
 
 	// Get the current trial according to the trial order
 	public Trial GetTrial() {

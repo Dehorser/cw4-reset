@@ -27,17 +27,22 @@ public class ReOrienterAndTester : MonoBehaviour {
 		_maze = GameObject.Find ("Maze");
 		_voronoi = GameObject.Find ("Voronoi");
 		_textMessage = GameObject.Find ("Canvas");
-		_voronoi.SetActive (false);
+		_voronoi.SetActive (true);
 		_textMessage.SetActive (false);
 
 		myTrials = this.gameObject.GetComponent<TrialManager>();
+		myTrials.SetUpTrials ();
+
+
+		//setup portion
+		_maze.SetActive (false);
 	}
 
 	//public const int TRAINING = 0;
 	public const int PRETRIAL = 1;
 	public const int INTRIAL = 2;
 	public const int POSTTRIAL = 3;
-	private int state = PRETRIAL;
+	private int state = POSTTRIAL;
 	private float lastButtonPress = 0;
 
 	// Update is called once per frame
@@ -118,7 +123,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 	}
 
 	void LogData(string action) {
-		string path = Application.persistentDataPath + "/CW4Summary_Data.txt";
+		string path = Application.persistentDataPath + "/CW4Summary_Data_Test_Phase.txt";
 
 		string appendText = "\n" + DateTime.Now.ToString() + "\t" + 
 			Time.time + "\t" + 

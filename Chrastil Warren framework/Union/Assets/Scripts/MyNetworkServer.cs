@@ -10,7 +10,7 @@ public class MyNetworkServer : MonoBehaviour {
 	const short MESSAGE_DATA = 880;
 	const short MESSAGE_INFO = 881;
 	const string SERVER_ADDRESS = "192.168.11.11";
-	const string TRACKER_ADDRESS = "192.168.1.100";
+	const string TRACKER_ADDRESS = "192.168.11.33";
 	const int SERVER_PORT = 5000;
 
 	public string message = "";
@@ -100,7 +100,7 @@ public class MyNetworkServer : MonoBehaviour {
 	// client function
 	public void OnConnected(NetworkMessage netMsg)
 	{
-		myClient.Send(MESSAGE_INFO, new VRPNInfo("GearVR", TRACKER_ADDRESS));
+		myClient.Send(MESSAGE_INFO, new VRPNInfo("PPT0", TRACKER_ADDRESS));
 		_connectionID = netMsg.conn.connectionId;
 		message = "Connected";
 	}
