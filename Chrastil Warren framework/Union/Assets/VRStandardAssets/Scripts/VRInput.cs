@@ -15,8 +15,8 @@ namespace VRStandardAssets.Utils
             NONE,
             UP,
             DOWN,
-            LEFT,
-            RIGHT
+            FORWARD,
+            BACKWARD
         };
 
 
@@ -138,11 +138,11 @@ namespace VRStandardAssets.Utils
 
             // If the swipe has a positive x component and is horizontal the swipe is right.
             if (swipeData.x > 0f && swipeIsHorizontal)
-                return SwipeDirection.RIGHT;
+                return SwipeDirection.BACKWARD;
 
             // If the swipe has a negative x component and is vertical the swipe is left.
             if (swipeData.x < 0f && swipeIsHorizontal)
-                return SwipeDirection.LEFT;
+                return SwipeDirection.FORWARD;
 
             // If the swipe meets none of these requirements there is no swipe.
             return SwipeDirection.NONE;
@@ -173,11 +173,11 @@ namespace VRStandardAssets.Utils
 
             // If there is positive horizontal input now and previously there wasn't the swipe is right.
             if (horizontal > 0f && noHorizontalInputPreviously)
-                return SwipeDirection.RIGHT;
+                return SwipeDirection.BACKWARD;
 
             // If there is negative horizontal input now and previously there wasn't the swipe is left.
             if (horizontal < 0f && noHorizontalInputPreviously)
-                return SwipeDirection.LEFT;
+                return SwipeDirection.FORWARD;
 
             // If the swipe meets none of these requirements there is no swipe.
             return SwipeDirection.NONE;

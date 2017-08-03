@@ -57,15 +57,15 @@ public class MainMenu : MonoBehaviour {
 			myPhases.SetLearning (Phases.PhaseTypes.Resetting);
 			myPhases.SetTesting (Phases.PhaseTypes.Resetting);
 			break;
-		case VRInput.SwipeDirection.LEFT:
+		case VRInput.SwipeDirection.FORWARD:
 			invalidSelection = false;
-			mode = "Selected left";
+			mode = "Selected forward";
 			myPhases.SetLearning (Phases.PhaseTypes.CW4);
 			myPhases.SetTesting (Phases.PhaseTypes.Resetting);
 			break;
-		case VRInput.SwipeDirection.RIGHT:
+		case VRInput.SwipeDirection.BACKWARD:
 			invalidSelection = false;
-			mode =  "Selected right";
+			mode =  "Selected backward";
 			myPhases.SetLearning (Phases.PhaseTypes.Resetting);
 			myPhases.SetTesting (Phases.PhaseTypes.CW4);
 			break;

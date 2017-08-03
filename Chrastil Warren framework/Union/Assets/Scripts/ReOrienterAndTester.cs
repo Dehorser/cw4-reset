@@ -41,12 +41,17 @@ public class ReOrienterAndTester : MonoBehaviour {
 	public const int PRETRIAL = 1;
 	public const int INTRIAL = 2;
 	public const int POSTTRIAL = 3;
-	private int state = POSTTRIAL;
+	public const int PRETEST = 0;
+	private int state = PRETEST;
 	private float lastButtonPress = 0;
 
 	// Update is called once per frame
 	void Update () {
-		if (state == PRETRIAL) {
+		if (state == PRETEST) {
+			ResetPerson ();
+			state = PRETRIAL;
+		}
+		else if (state == PRETRIAL) {
 			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
 				if (Mathf.Abs (_humanMover.transform.position.x - myTrials.GetTrial().startObject.transform.position.x) < 1.2) {
 					if (Mathf.Abs (_humanMover.transform.position.z - myTrials.GetTrial().startObject.transform.position.z) < 1.2) {
@@ -70,6 +75,8 @@ public class ReOrienterAndTester : MonoBehaviour {
 			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
 				lastButtonPress = Time.fixedTime;
 				state = PRETRIAL;
+
+				myTrials.MoveToNextTrial ();
 				ResetPerson ();
 			}
 		}
@@ -79,7 +86,7 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 	void ResetPerson() {
 
-		myTrials.MoveToNextTrial ();
+
 
 		_stringMessage.text = "Please go to " + myTrials.GetTrial().endObject.name;
 		//Place this at corresponding waypoint

@@ -73,7 +73,7 @@ public class AccelerometerInput4 : MonoBehaviour {
         //    I think that the first section is when you are stepping and the second when you are not stepping
         //    The idea is that we have increasing exponential decay (1-e^(-t)) when stepping 
         //    and decreasing exponential decay (e^-t) when not stepping
-		if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
+		if ((Input.gyro.userAcceleration.y >= 0.085f || Input.gyro.userAcceleration.y <= -0.085f) &&
 		    (Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f)) {
 			if (wasTwo) { //we are transitioning from phase 2 to 1
 				method1StartTimeGrow = Time.time;
@@ -90,7 +90,7 @@ public class AccelerometerInput4 : MonoBehaviour {
 
 
         //Why we have the exact same conditions again is really unknown to me. But again, just as the above comment says
-		if ((Input.gyro.userAcceleration.y >= 0.105f || Input.gyro.userAcceleration.y <= -0.105f) &&
+		if ((Input.gyro.userAcceleration.y >= 0.085f || Input.gyro.userAcceleration.y <= -0.085f) &&
 		    (Input.gyro.userAcceleration.z < 0.08f && Input.gyro.userAcceleration.z > -0.08f)) { //0.08 is an arbitrary threshold
 
 			velocity = 3f - (3f - velocity) * Mathf.Exp ((method1StartTimeGrow - Time.time) / 1.6f); //grow

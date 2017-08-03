@@ -153,7 +153,7 @@ public class MyNetworkServer : MonoBehaviour {
 			hasNotReturnedToBounds = true;
 			virtualAngleTurned = 0f;
 			feather.SetActive (true);
-			Vector3 featherPosition = new Vector3 (featherDestination.transform.position.x, transform.position.y, featherDestination.transform.position.z);
+			Vector3 featherPosition = new Vector3 (featherDestination.transform.position.x, featherDestination.transform.position.y, featherDestination.transform.position.z);
 			feather.transform.position = featherPosition;
 			Vector3 featherEuler = new Vector3(90, featherDestination.transform.eulerAngles.y, 0);
 			feather.transform.eulerAngles = featherEuler;
