@@ -16,9 +16,14 @@ public class ReOrienterAndTester : MonoBehaviour {
 	private GameObject _textMessage;
 
 	private TrialManager myTrials;
+	private NetworkControlCenter networkControlCenter;
 	private int _trial = 0;
 
 	public Text _stringMessage;
+
+	void Awake() {
+		lastButtonPress = Time.fixedTime + 10; //ensure no button can be pressed for 10 seconds
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +40,10 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 		//setup portion
 		_maze.SetActive (false);
+
+		//Networking for controls
+		networkControlCenter = new NetworkControlCenter();
+		networkControlCenter.Start (this.gameObject, myTrials, true);
 	}
 
 	//public const int TRAINING = 0;
@@ -48,8 +57,11 @@ public class ReOrienterAndTester : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (state == PRETEST) {
-			ResetPerson ();
-			state = PRETRIAL;
+			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
+				lastButtonPress = Time.fixedTime;
+				ResetPerson ();
+				state = PRETRIAL;
+			}
 		}
 		else if (state == PRETRIAL) {
 			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
@@ -78,16 +90,25 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 				myTrials.MoveToNextTrial ();
 				ResetPerson ();
+				networkControlCenter.SendStateUpdate ();
 			}
 		}
+	}
+
+	public void UpdateTrial()
+	{
+		state = POSTTRIAL;
+		//Alert user to resuming testing
+		_textMessage.SetActive (true);
+		_voronoi.SetActive (true);
+		_maze.SetActive (false);
+		_stringMessage.text = "Resuming Testing";
+		_trial = myTrials.GetOrderIndex () + 1;
 	}
 
 
 
 	void ResetPerson() {
-
-
-
 		_stringMessage.text = "Please go to " + myTrials.GetTrial().endObject.name;
 		//Place this at corresponding waypoint
 		transform.position = myTrials.GetTrial().startPosition;

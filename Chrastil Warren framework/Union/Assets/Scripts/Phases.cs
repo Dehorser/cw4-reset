@@ -37,7 +37,7 @@ public class Phase {
 // Handles moving between scenes
 public class Phases {
 
-	enum PhaseNames {Practice1, Practice2, Learning, Test};
+	enum PhaseNames {Practice1, Rest1, Practice2, Rest2, Learning, Test};
 	public enum PhaseTypes {CW4, Resetting};
 
 	private Phase[] myPhases;
@@ -49,7 +49,9 @@ public class Phases {
 
 		// Hardcode times
 		myPhases [(int) PhaseNames.Practice1] = new Phase("", 300);
+		myPhases [(int) PhaseNames.Rest1] = new Phase("", 6000); //cause why not
 		myPhases [(int) PhaseNames.Practice2] = new Phase("", 300);
+		myPhases [(int) PhaseNames.Rest2] = new Phase("", 6000); //cause why not
 		myPhases [(int) PhaseNames.Learning] = new Phase("", 600);
 		myPhases [(int) PhaseNames.Test] = new Phase("", int.MaxValue);
 	}
@@ -61,6 +63,7 @@ public class Phases {
 	// Set learning
 	// First practice is same type as learning
 	public void SetLearning(PhaseTypes t) {
+		myPhases [(int) PhaseNames.Rest1].Name = "Rest Phase";
 		if (t == PhaseTypes.CW4) {
 			myPhases [(int) PhaseNames.Practice1].Name = "CW4 Practice Phase";
 			myPhases [(int) PhaseNames.Learning].Name = "CW4 Learning Phase";
@@ -73,6 +76,7 @@ public class Phases {
 	// Set testing
 	// Second practice is same type as testing
 	public void SetTesting(PhaseTypes t) {
+		myPhases [(int) PhaseNames.Rest2].Name = "Rest Phase";
 		if (t == PhaseTypes.CW4) {
 			myPhases [(int) PhaseNames.Practice2].Name = "CW4 Practice Phase";
 			myPhases [(int) PhaseNames.Test].Name = "CW4 Test Phase";

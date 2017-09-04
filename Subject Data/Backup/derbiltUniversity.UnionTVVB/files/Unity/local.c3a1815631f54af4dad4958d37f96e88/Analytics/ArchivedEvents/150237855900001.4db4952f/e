@@ -1,0 +1,4 @@
+(2){"type":"deviceInfo","ts":1502378539697,"adsid":"5fb9e5cb-8b26-4cb9-8e19-edd65faa1800","ads_tracking":true}
+{"type":"appRunning","ts":1502378544771,"duration":24,"local_time_offset":21600000}
+{"type":"appRunning","ts":1502378613549,"duration":86,"local_time_offset":21600000}
+(1){"type":"appStop","ts":1502378613549}

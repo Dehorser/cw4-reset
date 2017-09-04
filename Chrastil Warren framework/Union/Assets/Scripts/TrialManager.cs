@@ -69,6 +69,10 @@ public class TrialManager {
 		return orderIndex;
 	}
 
+	public void SetOrderIndex(Int32 newIndex) {
+		orderIndex = newIndex;
+	}
+
 	public void MoveToNextTrial() {
 		if (orderIndex + 1 > maxOrderIndex) {
 			throw new ArgumentOutOfRangeException ();
