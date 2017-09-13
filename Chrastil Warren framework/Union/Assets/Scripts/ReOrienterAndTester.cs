@@ -56,6 +56,8 @@ public class ReOrienterAndTester : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		networkControlCenter.Update ();
+
 		if (state == PRETEST) {
 			if (Input.GetMouseButton (0) && Time.fixedTime > lastButtonPress + 1) {
 				lastButtonPress = Time.fixedTime;

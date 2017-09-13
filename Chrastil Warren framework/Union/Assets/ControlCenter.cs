@@ -19,6 +19,7 @@ public class ControlCenter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		networkControlCenter.Update ();
 		if (currentTrial != myTrials.GetOrderIndex())
 		{
 			currentTrial = myTrials.GetOrderIndex ();

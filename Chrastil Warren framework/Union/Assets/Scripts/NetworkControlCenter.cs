@@ -32,10 +32,12 @@ public class ExperimentalState : MessageBase
 class NetworkControlCenter
 {
 	const short STATE_DATA = 890;
+	const short CONNECTION_STATUS = 893;
 	const string SERVER_ADDRESS = "192.168.11.2";
 	const int SERVER_PORT = 5001;
+	int framesSinceContact = 0;
 	NetworkClient myClient;
-	private bool hasClient = false;
+	private bool isClient = false;
 
 	private GameObject parent;
 	private TrialManager trialManager;
@@ -51,20 +53,59 @@ class NetworkControlCenter
 		}
 	}
 
+	public void Update()
+	{
+		//return;
+		framesSinceContact++;
+		if (isClient) {
+			if (myClient.isConnected) {
+				myClient.Send (CONNECTION_STATUS, new ExperimentalState ());
+				Debug.Log ("Hello");
+			}
+			if (framesSinceContact > 240) {
+				framesSinceContact = -600;
+				//RestartClient ();
+			}
+		} else {
+			NetworkServer.SendToAll (CONNECTION_STATUS, new ExperimentalState());
+			if (framesSinceContact > 600) {
+				framesSinceContact = -600;
+				RestartServer ();
+			}
+		}
+	}
+
 	//client code
 
 	private void SetupClient()
 	{
 		//This code runs on windows
+		isClient = true;
 		myClient = new NetworkClient ();
 		myClient.RegisterHandler (STATE_DATA, StateUpdate);
 		myClient.RegisterHandler (MsgType.Connect, OnClientConnected);
+		myClient.RegisterHandler (CONNECTION_STATUS, OnKeepInTouch);
+		myClient.Connect (SERVER_ADDRESS, SERVER_PORT);
+	}
+
+	private void RestartClient()
+	{
+		//This code runs on windows
+		myClient.Disconnect();
+		myClient.UnregisterHandler (STATE_DATA);
+		myClient.UnregisterHandler (MsgType.Connect);
+		myClient.UnregisterHandler (CONNECTION_STATUS);
+		isClient = true;
+		myClient = new NetworkClient ();
+		myClient.RegisterHandler (STATE_DATA, StateUpdate);
+		myClient.RegisterHandler (MsgType.Connect, OnClientConnected);
+		myClient.RegisterHandler (CONNECTION_STATUS, OnKeepInTouch);
 		myClient.Connect (SERVER_ADDRESS, SERVER_PORT);
 	}
 
 	public void SendClientUpdate()
 	{
-		Debug.Log ("Sent Data to Server");
+		//Debug.Log ("Sent Data to Server");
 		myClient.Send(STATE_DATA, new ExperimentalState (parent.transform.position, parent.transform.eulerAngles, trialManager.GetOrderIndex ()));
 	}
 		
@@ -72,16 +113,23 @@ class NetworkControlCenter
 	public void StateUpdate(NetworkMessage ServerStateDataMessage)
 	{
 		//Run on client, recives stat update
-		Debug.Log("Recieved Data from Server");
+		//Debug.Log("Recieved Data from Server");
 		ExperimentalState ServerData = ServerStateDataMessage.ReadMessage<ExperimentalState> ();
 		trialManager.SetOrderIndex (ServerData._trialNumber);
-
 	}
 
 	public void OnClientConnected(NetworkMessage netMsg)
 	{
 		//do nothing
 		trialManager.SetOrderIndex(5);
+		Debug.Log ("Client Connected");
+	}
+
+	//both somehow
+
+	public void OnKeepInTouch(NetworkMessage connectionPresent)
+	{
+		framesSinceContact = -2400;
 	}
 
 	//server code
@@ -91,6 +139,15 @@ class NetworkControlCenter
 		//This code runs on android
 		NetworkServer.Listen(SERVER_PORT);
 		NetworkServer.RegisterHandler (MsgType.Connect, OnServerConnected);
+		NetworkServer.RegisterHandler (STATE_DATA, OnStateRecieved);
+		Debug.Log ("Hello");
+	}
+
+	private void RestartServer()
+	{
+		NetworkServer.Reset ();
+		NetworkServer.Listen(SERVER_PORT);
+		NetworkServer.RegisterHandler (MsgType.Connect, OnServerConnected);
 		Debug.Log ("Hello");
 		NetworkServer.RegisterHandler (STATE_DATA, OnStateRecieved);
 	}
@@ -98,7 +155,6 @@ class NetworkControlCenter
 	public void OnServerConnected(NetworkMessage netMsg)
 	{
 		//Send out current state
-		hasClient = true;
 		NetworkServer.SetClientReady(netMsg.conn);
 		SendStateUpdate ();
 	}

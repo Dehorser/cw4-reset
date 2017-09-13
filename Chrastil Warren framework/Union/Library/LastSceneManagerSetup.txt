@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CW4 Learning Phase.unity
+- path: Assets/Scenes/Control Center.unity
   isLoaded: 1
   isActive: 1

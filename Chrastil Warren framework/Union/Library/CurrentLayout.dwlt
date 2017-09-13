@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 1928
+    x: 8
     y: 51
     width: 1904
     height: 981
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 21
+  controlID: 9
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 22
+  controlID: 10
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 23
+  controlID: 11
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1928
+    x: 8
     y: 676
     width: 1515
     height: 334
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 3447
+    x: 1527
     y: 100
     width: 385
     height: 910
@@ -474,15 +474,15 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1928
+    x: 8
     y: 100
     width: 373
     height: 555
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 62d3ffff
-    m_LastClickedID: -11422
-    m_ExpandedIDs: 64d3ffff72d3ffff9ce0ffffcce2ffffbce3ffffe2e4ffff4ae6ffff50e6ffffe4e6ffff4ee8ffff20e9ffff6ce9ffff72e9ffff9cedffffa6edffff1af1ffff34f5ffff42f5ffffb8f8ffffbaf8ffffe4fbffff00000000
+    m_SelectedIDs: c2250000
+    m_LastClickedID: 0
+    m_ExpandedIDs: 965bffffbc5dffffae5effff8e5ffffff660ffffc861ffff5c62ffffc663ffff9864ffffe464ffffea64ffff0267ffff0467ffffce69ffffd069ffffac6dffffb66dffff4470ffff5270ffffae73ffff8276ffff9076ffff3c7fffffb280ffff4c81ffff2c82ffff9483ffff6684fffffa84ffff6486ffff3687ffff8287ffff8887ffffe289ffffe489ffff848dffff8e8dffff9a90ffffb696ffffc496ffff8aa0ffffb0a2ffffa2a3ffff84a4ffffeea5ffffc2a6ffff58a7ffffc4a8ffff98a9ffffeaa9fffff2a9ffff42aeffff44aeffffeabfffffb4c0ffffcac1ffff32c3ffff04c4ffff98c4ffff02c6ffffe0c6ffff32c7ffff38c7ffff00c9ffffc6c9ffffdecaffff48ccffff1ccdffffb2cdffff1ecffffffecfffff52d0ffff5ad0ffff12ebffff92f2ffff94f2fffffaf4ffff04f5ffffdcf6ffff66f9ffff74f9ffffe4fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -501,7 +501,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
-  - CW4 Learning Phase
+  - Control Center
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -527,7 +527,7 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 2305
+    x: 385
     y: 100
     width: 1138
     height: 555
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_DepthBufferBits: 32
   m_Pos:
     serializedVersion: 2
-    x: 2305
+    x: 385
     y: 100
     width: 1138
     height: 555
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 1928
+    x: 8
     y: 676
     width: 1515
     height: 334
